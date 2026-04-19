@@ -2,7 +2,7 @@ create database	miniproject1;
 use miniproject1;
 
 create table student (
-	studentID int primary key auto_increment unique,
+	studentID int primary key auto_increment,
     fullName varchar(100) not null,
     dateOfBirth datetime default current_timestamp,
     email varchar(100) not null unique
@@ -69,8 +69,8 @@ create table score(
 	scoreID int primary key auto_increment,
 	studentID int not null,
     courseID int not null unique,
-    hackathonScore float check(hackathonScore > 0 and hackathonScore < 10),
-    finalTestScore float check(finalTestScore > 0 and finalTestScore < 10),
+    hackathonScore float check(hackathonScore >= 0 and hackathonScore <= 10),
+    finalTestScore float check(finalTestScore >= 0 and finalTestScore <= 10),
     foreign key (studentID) references student(studentID),
     foreign key (courseID) references course(courseID)
 );
